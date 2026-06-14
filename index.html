@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Enrollment | School Management</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+
+  <div class="page-wrapper">
+
+
+    <aside class="accent-panel d-none d-lg-flex">
+      <div class="accent-inner">
+        <div class="school-badge">
+          <i class="bi bi-mortarboard-fill"></i>
+        </div>
+        <h1 class="accent-title">Student<br/>Enrollment</h1>
+        <p class="accent-sub">School Management System</p>
+        <div class="accent-divider"></div>
+        <ul class="accent-steps">
+          <li><span class="step-dot"></span>Enter Roll No to begin</li>
+          <li><span class="step-dot"></span>Fill in student details</li>
+          <li><span class="step-dot"></span>Save or update the record</li>
+        </ul>
+        <div class="accent-footer">SCHOOL-DB · STUDENT-TABLE</div>
+      </div>
+    </aside>
+
+
+    <main class="form-area">
+
+
+      <div class="mobile-header d-flex d-lg-none">
+        <i class="bi bi-mortarboard-fill me-2"></i>
+        Student Enrollment
+      </div>
+
+      <div id="alertContainer" class="alert-zone" role="alert" aria-live="polite"></div>
+
+
+      <div class="enrollment-card">
+        <div class="card-head">
+          <h2 class="card-title">New / Existing Student</h2>
+          <p class="card-hint">Enter a Roll No — we'll check whether this student already exists.</p>
+        </div>
+
+        <div class="card-body-custom">
+          <form id="enrollmentForm" novalidate autocomplete="off">
+
+
+            <div class="form-section">
+              <div class="section-label">Primary Key</div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="rollNo" class="field-label">
+                    Roll No <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <i class="bi bi-hash field-icon"></i>
+                    <input
+                      type="text"
+                      id="rollNo"
+                      class="form-input"
+                      placeholder="e.g. 2024001"
+                      maxlength="20"
+                    />
+                    <div id="rollNoStatus" class="lookup-status"></div>
+                  </div>
+                  <div class="field-error" id="rollNoError"></div>
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                  <div class="lookup-hint">
+                    <i class="bi bi-info-circle"></i>
+                    Tab or click away after entering Roll No to look up the record.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="section-divider"></div>
+
+
+            <div class="form-section">
+              <div class="section-label">Personal Details</div>
+              <div class="row g-3">
+                <div class="col-md-7">
+                  <label for="fullName" class="field-label">
+                    Full Name <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <i class="bi bi-person field-icon"></i>
+                    <input
+                      type="text"
+                      id="fullName"
+                      class="form-input"
+                      placeholder="Student's full name"
+                      disabled
+                      maxlength="100"
+                    />
+                  </div>
+                  <div class="field-error" id="fullNameError"></div>
+                </div>
+                <div class="col-md-5">
+                  <label for="studentClass" class="field-label">
+                    Class <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <i class="bi bi-building field-icon"></i>
+                    <input
+                      type="text"
+                      id="studentClass"
+                      class="form-input"
+                      placeholder="e.g. 10-A"
+                      disabled
+                      maxlength="20"
+                    />
+                  </div>
+                  <div class="field-error" id="studentClassError"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-label">Dates</div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="birthDate" class="field-label">
+                    Date of Birth <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <i class="bi bi-calendar2 field-icon"></i>
+                    <input
+                      type="date"
+                      id="birthDate"
+                      class="form-input"
+                      disabled
+                    />
+                  </div>
+                  <div class="field-error" id="birthDateError"></div>
+                </div>
+                <div class="col-md-6">
+                  <label for="enrollmentDate" class="field-label">
+                    Enrollment Date <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <i class="bi bi-calendar2-check field-icon"></i>
+                    <input
+                      type="date"
+                      id="enrollmentDate"
+                      class="form-input"
+                      disabled
+                    />
+                  </div>
+                  <div class="field-error" id="enrollmentDateError"></div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-section">
+              <div class="section-label">Contact</div>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="address" class="field-label">
+                    Address <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper textarea-wrapper">
+                    <i class="bi bi-geo-alt field-icon textarea-icon"></i>
+                    <textarea
+                      id="address"
+                      class="form-input form-textarea"
+                      placeholder="Full residential address"
+                      disabled
+                      rows="3"
+                      maxlength="300"
+                    ></textarea>
+                  </div>
+                  <div class="field-error" id="addressError"></div>
+                </div>
+              </div>
+            </div>
+
+>
+            <div class="action-row">
+              <button type="button" id="btnReset" class="btn-action btn-reset">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset
+              </button>
+              <div class="primary-actions">
+                <button type="button" id="btnSave" class="btn-action btn-save" disabled>
+                  <i class="bi bi-floppy"></i> Save
+                </button>
+                <button type="button" id="btnUpdate" class="btn-action btn-update" disabled>
+                  <i class="bi bi-pencil-square"></i> Update
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+>
+  <script src="script.js"></script>
+</body>
+</html>
